@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main()
+{
+	int secim , stNo ;
+	char isim[40] , bolum[100] ;
+	FILE *kayit ;
+	printf("1-)Sifirdan dosya olusturma\n2-)Kayit ekleme\n3-)Listeyi goruntule") ;
+	scanf("%d",&secim) ;
+	switch(secim)
+	{
+		case 1:
+			kayit = fopen("kayit.txt","w") ;
+			fclose(kayit) ;
+			break ;
+		case 2:
+			printf("Eklemek istedi�iniz ogrencinin nosu ismi ve bolumunu giriniz.") ;
+			scanf("%d%s%s",&stNo,isim,bolum) ;
+			kayit = fopen("kayit.txt","a") ;
+			fprintf(kayit,"%d\t%s\t%s\n",stNo,isim,bolum) ;
+			fclose(kayit) ;
+			break ;
+		case 3:
+			kayit = fopen("kayit.txt","r") ;
+			while(! feof(kayit))
+			{
+				fscanf(kayit,"%d%s%s",&stNo,isim,bolum);
+				printf("%d%s%s\n",stNo,isim,bolum) ;
+			}
+			fclose(kayit) ;
+			break ;
+										
+	}
+		
+
+
+	return 0 ;
+}
