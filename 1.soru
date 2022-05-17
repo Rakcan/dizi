@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct number{
+	int sayi ;
+	struct number *next ;
+};
+typedef struct number sayilar ;
+sayilar *p , *temp , *head ;
+
+sayilar* sayiEkle()
+{
+	while(1)
+	{
+		temp = (sayilar*) malloc(sizeof(sayilar)) ;
+		temp->next = NULL ;
+		printf("Bir sayi giriniz(Bitirmek icin -1 giriniz): ") ;
+		scanf("%d",&temp->sayi) ;
+		if(temp->sayi == -1)
+		{
+			break ;
+		}
+		if(head = NULL)
+		{
+			head = temp  ;
+		}	
+		else
+		{
+			if(temp->sayi % 2 == 0 )
+			{
+				p = head ;
+				while(p->next != NULL)
+				{
+					p = p->next ;
+				}
+				temp = p->next ;
+				temp->next = NULL ;
+			}
+			else if(temp->sayi % 2 == 1)
+			{
+				temp->next = head ;
+				head = temp ;
+			}
+		}	
+	}
+	return head ;
+}
+sayilar* yazdir()
+{
+	temp = head ;
+	while(temp->next != NULL)
+	{
+		printf("%d  " ,temp->sayi) ;
+		temp = temp->next ;
+	}
+}  
+int main()
+{
+	sayiEkle() ;
+	yazdir() ;
+	return 0 ;
+}
+
+
