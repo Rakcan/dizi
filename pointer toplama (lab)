@@ -1,0 +1,19 @@
+#include<stdio.h>
+
+int main()
+{
+	int x , y , z , *sayiBir , *sayiIki ;
+	
+	scanf("%d",&x) ;
+	scanf("%d",&y) ;
+
+	sayiBir = &x ;
+	sayiIki = &y ;
+	
+	z = *sayiBir + *sayiIki ;
+
+	printf("%d",z);
+	
+	return 0 ;
+}
+
