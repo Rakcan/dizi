@@ -1,0 +1,87 @@
+#include <stdio.h>
+
+int main()
+{	
+	FILE *liste ;
+	int secim , stNo , midterm , sayac = 0 , arama ;
+	char isim[40] , soyisim[40] ;
+
+	while(1)
+	{
+		printf("1-)10 kisilik yeni liste olustur.\n2-)Notu 50'den yuksek olanlari listele.\n3-)Ogrenci numarasi ile kayit ara.\n4-)Ogrenci kaydi guncelle.\n0-)Programi kapat.\n") ;
+		printf("Yapmak istediginiz islemi seciniz: ") ;
+		scanf("%d",&secim) ;
+		switch(secim)
+		{
+			case 1:
+				liste = fopen("liste.txt","w") ;
+				if(liste == NULL)
+				{
+					printf("Dosya acilamad�") ;
+				}
+				else
+				{
+					while(sayac < 10)
+					{
+						printf("Ogrencinin numarasi , ismi , soyismi , vize notu: ") ;
+						scanf("%d%s%s%d",&stNo,isim,soyisim,&midterm) ;
+						fprintf(liste,"%d\t%s %s : %d\n",stNo,isim,soyisim,midterm) ;
+						sayac++ ;
+					}
+					fclose(liste) ;
+					break ;
+				}
+			case 2:
+				liste = fopen("liste.txt","r") ;
+				while(! feof(liste))
+				{
+					fscanf(liste,"%d%s%s%d",&stNo,isim,soyisim,&midterm) ;
+					if(midterm > 50)
+					{
+						printf("%d    %s %s %d\n",stNo,isim,soyisim,midterm) ;
+					}
+				}
+				fclose(liste) ;
+				break ;	
+			case 3:
+				liste = fopen("liste.txt","r") ;
+				printf("Aramak istediginiz ogrencinin numarasi: ") ;
+				scanf("%d",&arama) ;
+				while(! feof(liste))
+				{
+					fscanf(liste,"%d%s%s%d",&stNo,isim,soyisim,&midterm) ;
+					if(arama == stNo)
+					{
+						printf("%d    %s %s %d\n",stNo,isim,soyisim,midterm) ;
+					}
+				}
+				fclose(liste) ;
+				break ;	
+			case 4:
+				liste = fopen("liste.txt","r+") ;
+				printf("Kaydini guncellemek istediginiz ogrencinin numarasi: ") ;
+				scanf("%d",&arama) ;
+				while(! feof(liste))
+				{
+					fscanf(liste,"%d%s%s%d",&stNo,isim,soyisim,&midterm) ;
+					
+					if(arama == stNo)
+					{
+						printf("Yeni bilgileri giriniz.\n") ;
+						printf("Ogrencinin numarasi , ismi , soyismi , vize notu: ") ;
+						scanf("%d%s%s%d",&stNo,isim,soyisim,&midterm) ;
+						fprintf(liste,"%d\t%s %s: %d",stNo,isim,soyisim,midterm) ;
+					}
+				}
+				fclose(liste) ;
+				break ;
+			case 0:
+				return 0 ;
+		}
+	}
+}
+
+
+
+
+
