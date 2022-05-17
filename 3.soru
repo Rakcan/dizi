@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct student {
+	int sayi;
+	struct student *next;
+	
+};
+typedef struct student node ;
+
+node* liste()
+{
+	node *head=NULL ;
+	node *q =NULL ;	
+	node *p =NULL ;
+	while(1)
+	{
+		q=(node*)malloc(sizeof(node));
+		printf("Bir sayi giriniz(Cikis yapmak icin -1 tuslayiniz.):\n") ;
+		scanf("%d",&q->sayi) ;
+		q->next=NULL ;
+		if(head==NULL)
+			head=q ;
+		else
+		{
+			if(q->sayi==-1)
+				 break ;
+			p=head ;	
+			while(p->next!=NULL){
+				p= p->next ;
+				p->next=q ;
+		}
+		}
+	}	
+	return head ;
+}
+void ortaSil(node *head,int counter)
+{
+	node *p=head ; 
+	node *q=head ;
+	for(int i=1;i<counter/2;i++){
+		p=p->next ;	
+	}
+	while(q->next!=p){
+		q=q->next ;
+	}
+	q->next=p->next ;
+
+}
+int sayim(node *head)
+{
+	int counter=0 ;
+	node *p =head ;
+	while(p!=NULL)
+	{
+		counter++ ;
+		p=p->next ; 
+	}
+	return counter ;
+}
+void read(node *head)
+{
+	node *p=head ;
+	while(p!=NULL)
+	{
+		printf("%d\n",p->sayi) ;
+		p=p->next ;
+	}
+}
+int main()
+{
+	int secim ;
+	node *head = liste() ;
+	int counter = sayim(head) ;
+	while(secim!=-1)
+	{
+		printf("1-) Liste olustur\n2-) Listeyi oku\n3-) Listenin ortasindaki elemani sil\n4-) cikis icin -1 e basiniz\n") ;
+		printf("Seciminiz: ") ;	 
+		scanf("%d",&secim ) ;
+		switch(secim)
+		{
+			 case 1:
+				 liste() ;
+				 break ;
+			 case 2:
+	 			read(head) ;
+	 			break ;
+			 case 3:
+	 			int counter = sayim(head) ;
+	 			ortaSil(head,counter) ;
+	 			break ;
+    	}	
+    }
+}
