@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int *dizibirles(int[] , int , int[] , int);
+
+int main()
+{
+	
+	int dizi1[5] = {14,28,32,53,89};
+	int dizi2[7] = {5,10,15,18,25,42,135};
+
+	int *ptr;
+	ptr = dizibirles( dizi1 , 5 , dizi2 , 7 );
+
+	for(int i = 0 ;i<12;i++)
+		printf("%d\n",ptr[i]);
+	
+}
+
+	int *dizibirles(int dizi1[], int dizi1b, int dizi2[], int dizi2b) 
+{
+	int i,k;
+	int *sonucdizi = (int*)calloc(dizi1b+dizi2b,sizeof(int));
+
+	for(i = 0;i<dizi1b;i++)
+		sonucdizi[i] = dizi1[i];
+
+	for(k = 0;k<dizi2b;i++,k++)		
+		sonucdizi[i] = dizi2[k];
+	int j,x,a;
+	for(j=0; j<12;j++){
+		for(x=0;x<12;x++)
+		{
+			if  (sonucdizi[j]<=sonucdizi[x] ){
+			a = sonucdizi[x];
+			sonucdizi[x] = sonucdizi[j];
+			sonucdizi[j] = a;	
+			}	  
+		}
+}
+
+	return sonucdizi;
+
+
+}
