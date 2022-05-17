@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+int main()
+{
+	int x , *ptr , enBuyuk = 0 ;
+	scanf("%d",&x);	
+	ptr =(int*)calloc(x , sizeof(int));
+	for(int i = 0;i < x;i++)
+	{
+		scanf("%d",ptr[i]);
+		if(ptr[i] > enBuyuk)
+		{
+			enBuyuk = ptr[i] ;
+		}
+	}
+	printf("%d",enBuyuk);
+		
+	return 0;
+}
+
